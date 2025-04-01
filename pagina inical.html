@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.O.S.M.O.S. - Seus Cursos Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="header" class="container py-4 flex flex-col items-center">
+        <div id="nav-container">
+            <img src="images/placeholder.png" alt="" style="width: 100px; height: 1px; visibility: hidden;">
+            <nav id="nav">
+                <ul id="nav-list">
+                    <li><a href="#sobre">C.O.S.M.O.S</a></li>
+                    <li><a href="#modules" class="active">Nossos Cursos</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#contato">Contate-nos</a></li>
+                    <li><a href="#videoaulas">Tutoriais e Videoaulas</a></li>
+                    <li><a href="#equipe">Nossa Equipe</a></li>
+                </ul>
+            </nav>
+            <img src="images/placeholder.png" alt="" style="width: 100px; height: 1px; visibility: hidden;">
+        </div>
+        <button id="nav-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <hr id="nav-separator"> 
+    </header>
+
+    <section id="banner" class="container">
+        <div id="logo-banner">
+            <img src="images/COSMO_LOGO_1_2.png" alt="Logo C.O.S.M.O.S." style="height: 145px;">
+        </div>
+        <h2>Bem-vindo à C.O.S.M.O.S.</h2>
+        <p>Explore nossos cursos e transforme seu futuro conosco.</p>
+        <a href="#modules" class="button">Ver Cursos</a>
+        <div class="goto-next">
+            <a href="#modules">Ver Nossos Cursos <i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const nav = document.getElementById('nav');
+            const header = document.getElementById('header');
+
+            navToggle.addEventListener('click', function() {
+                nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+            });
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    <button id="nav-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+</header>
+<style>
+    /* Seus estilos CSS aqui */
+    #logo img {
+        height: 100px; /* Ajuste o tamanho conforme necessário */
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f7fafc;
+        color: #1a202c;
+        line-height: 1.7;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    .image.fit {
+        object-fit: cover;
+        object-position: center;
+        height: 400px;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 25px -5px #db2b2b1a, 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .image.fit:hover {
+        transform: translateY(-10px) scale(1.04);
+        box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.15), 0 9px 12px -6px rgba(0, 0, 0, 0.1);
+    }
+    .spotlight {
+        padding: 6rem 0;
+        text-align: center;
+    }
+    .spotlight h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 2rem;
+        letter-spacing: -0.02em;
+        animation: fadeIn 2s ease, pulse 3s ease-in-out infinite;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.06); }
+        100% { transform: scale(1); }
+    }
+    .spotlight p {
+        font-size: 1.2rem;
+        color: #4a5568;
+        margin-bottom: 2.5rem;
+        line-height: 1.8;
+        animation: slideIn 2s ease-out;
+    }
+    @keyframes slideIn {
+        0% { transform: translateY(50px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 0.75rem;
+        color: white;
+        background-color: #48bb78;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+        cursor: pointer;
+        border: none;
+        outline: none;
+        animation: zoomIn 1s ease-in, pulseButton 2s infinite alternate;
+    }
+    @keyframes zoomIn {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes pulseButton {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+    }
+    .button:hover {
+        background-color: #38a169;
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 8px -4px rgba(0, 0, 0, 0.12);
+    }
+    .button:active {
+        background-color: #2f855a;
+        transform: translateY(0) scale(1);
+        box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.1), 0 1px 3px -1px rgba(0, 0, 0, 0.08);
+    }
+    #header {
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: box-shadow 0.3s ease;
+    }
+    #header.scrolled {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    #logo a {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2b6cb0;
+        text-decoration: none;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+        letter-spacing: -0.02em;
+    }
+    #logo a:hover {
+        color: #3182ce;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    #nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    #nav ul li {
+        margin-left: 2rem;
+    }
+    #nav ul li a {
+        color: #4a5568;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: color 0.3s ease, transform 0.2s ease;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+    #nav ul li a:hover {
+        color: #2d3748;
+        transform: translateY(-2px);
+    }
+    #nav ul li a.active {
+        color: #2b6cb0;
+        font-weight: 700;
+    }
+    #nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #4a5568;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    #nav-toggle:hover {
+        color: #2d3748;
+        background-color: #edf2f7;
+    }
+    #nav-toggle:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    }
+    #banner {
+        background-image: linear-gradient(to bottom, #e0f2fe, #f0f4c3);
+        padding: 8rem 0;
+        text-align: center;
+        border-radius: 0.75rem;
+        margin-bottom: 6rem;
+        box-shadow: 0 6px 15px -2px rgba(0, 0, 0, 0.1), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        position: relative;
+    }
+    #banner h2 {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 2rem;
+        letter-spacing: -0.02em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 2s ease, pulse 3s ease-in-out infinite;
+    }
+    #banner p {
+        font-size: 1.3rem;
+        color: #4a5568;
+        margin-bottom: 2.5rem;
+        line-height: 1.8;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        animation: slideIn 2s ease-out;
+    }
+    #banner .button {
+        padding: 1.2rem 3rem;
+        font-size: 1.2rem;
+        animation: zoomIn 1s ease-in, pulseButton 2s infinite alternate;
+    }
+    .goto-next {
+        margin-top: 3rem;
+    }
+    .goto-next a {
+        color: #4a5568;
+        transition: color 0.3s ease, transform 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.2rem;
+        animation: bounceArrow 1.5s ease-in-out infinite;
+    }
+    @keyframes bounceArrow {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-15px); }
+        60% { transform: translateY(-8px); }
+    }
+    .goto-next a:hover {
+        color: #2d3748;
+        transform: translateY(5px);
+    }
+    .goto-next i {
+        font-size: 2rem;
+    }
+    #footer {
+        background-color: #f7fafc;
+        padding: 4rem 0;
+        border-top: 1px solid #e2e8f0;
+    }
+    #footer .icons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+    #footer .icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        color: #4a5568;
+        transition: color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        font-size: 1.5rem;
+        margin: 0 1rem;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        animation: pulseIcon 2s infinite alternate;
+    }
+    @keyframes pulseIcon {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+    }
+        @keyframes pulseIcon {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+        #footer .icons a:hover {
+            color: #2d3748;
+            background-color: #edf2f7;
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            filter: hue-rotate(-20deg) saturate(1.2);
+        }
+        #footer .copyright {
+            font-size: 0.9rem;
+            color: #718096;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #footer .copyright a {
+            color: #2b6cb0;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        #footer .copyright a:hover {
+            color: #3182ce;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            #nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                z-index: 1000;
+                overflow-y: auto;
+                padding-top: 4rem;
+                text-align: center;
+                animation: slideInMobile 0.5s ease-in-out;
+            }
+            @keyframes slideInMobile {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(0); }
+            }
+            #nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            #nav ul li {
+                margin: 2rem 0;
+            }
+            #nav ul li a {
+                color: white;
+                font-size: 1.5rem;
+            }
+            #nav ul li a:hover {
+                color: #f7fafc;
+                transform: scale(1.2);
+            }
+            #nav-toggle {
+                display: block;
+            }
+            .container {
+                padding: 0 2rem;
+            }
+            #banner h2 {
+                font-size: 3rem;
+            }
+            #banner p {
+                font-size: 1.2rem;
+            }
+            .spotlight h2 {
+                font-size: 2.5rem;
+            }
+            .spotlight p {
+                font-size: 1.1rem;
+            }
+            .image.fit {
+                height: 400px;
+            }
+        }
+        #modules {
+            padding: 8rem 0;
+            background-color: #edf2f7;
+            text-align: center;
+        }
+        #modules h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+        @keyframes fadeInUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        #modules .module-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        #modules .module-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #modules .module-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        #modules .module-card h3 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+        #modules .module-card h3:hover {
+            color: #48bb78;
+        }
+        #modules .module-card p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        #modules .module-card .button {
+            align-self: flex-start;
+        }
+
+        /* Estilos para a seção de módulos */
+        #modules {
+            padding: 8rem 0;
+            background-color: #edf2f7;
+            text-align: center;
+        }
+        #modules h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+        @keyframes fadeInUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        #modules .module-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        #modules .module-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #modules .module-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        #modules .module-card h3 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+        #modules .module-card h3:hover {
+            color: #48bb78;
+        }
+        #modules .module-card p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        #modules .module-card .button {
+            align-self: flex-start;
+        }
+
+        /* Adicionando estilos para as seções de alimentação e vídeo aulas */
+        #alimentacao, #videoaulas {
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        #alimentacao h2,
+        #videoaulas h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+
+        #alimentacao .alimentacao-content,
+        #videoaulas .videoaulas-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        #alimentacao p,
+        #videoaulas p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 80%;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        #alimentacao .image-wrapper,
+        #videoaulas .video-wrapper {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 6px 15px -2px rgba(0, 0, 0, 0.1), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+            margin-bottom: 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+        }
+
+        #alimentacao .image-wrapper:hover,
+        #videoaulas .video-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        #alimentacao img,
+        #videoaulas iframe {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #videoaulas iframe {
+            aspect-ratio: 16 / 9;
+        }
+
+        /* Estilos para a seção de planos */
+        #planos {
+            padding: 8rem 0;
+            text-align: center;
+            background-color: #f7fafc;
+        }
+
+        #planos h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+
+        #planos .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            #planos .planos-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #planos .planos-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        #planos .plano-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: fadeIn 1s ease, slideIn 0.5s ease-out;
+        }
+        #planos .plano-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #planos .plano-card h3 {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+
+        #planos .plano-card h3:hover{
+            color: #48bb78;
+        }
+
+        #planos .plano-card p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        #planos .plano-card ul {
+            list-style: none;
+            margin: 0 0 2rem 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        #planos .plano-card ul li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #planos .plano-card ul li i {
+            color: #48bb78;
+            font-size: 1.2rem;
+            animation: checkIcon 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes checkIcon {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.3); }
+        }
+
+        #planos .plano-card .preco {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        #planos .plano-card .button {
+            align-self: center;
+            width: 100%;
+        }
+        #contato {
+            padding: 8rem 0;
+            text-align: center;
+            background-color: #e2e8f0;
+        }
+        #contato h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+        #contato p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease;
+        }
+        #contato form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        #contato form .mb-4 {
+            width: 100%;
+            max-width: 400px;
+        }
+        #contato form label {
+            display: block;
+            text-align: left;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        #contato form input,
+        #contato form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            font-size: 1rem;
+            color: #4a5568;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        #contato form input:focus,
+        #contato form textarea:focus {
+            border-color: #48bb78;
+            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+        }
+        #contato form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        #contato form button {
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+/* Estilos para os ícones dos módulos */
+#modules .module-card .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem auto;
+    transition: transform 0.3s ease;
+}
+
+#modules .module-card .icon-wrapper:hover {
+    transform: scale(1.1);
+}
+
+#modules .module-card i {
+    font-size: 2.5rem;
+    color: white;
+}
+
+#modules .module-card:nth-child(1) .icon-wrapper {
+    background-image: linear-gradient(to bottom right, #f44336, #d32f2f);
+}
+#modules .module-card:nth-child(1) i { /* Nutrição */
+    content: "\f0f4"; /* Ícone de alimentação */
+}
+
+#modules .module-card:nth-child(2) .icon-wrapper {
+    background-image: linear-gradient(to bottom right, #4caf50, #388e3c);
+}
+#modules .module-card:nth-child(2) i { /* Musculação/Fitness */
+    content: "\f46b"; /* Ícone de haltere */
+}
+
+#modules .module-card:nth-child(3) .icon-wrapper {
+    background-image: linear-gradient(to bottom right, #2196f3, #1976d2);
+}
+#modules .module-card:nth-child(3) i { /* Economia/dinheiro */
+    content: "\f0d6"; /* Ícone de dinheiro */
+}
+#modules .module-card:nth-child(4) .icon-wrapper {
+    background-image: linear-gradient(to bottom right, #ffc107, #ff8f00);
+}
+#modules .module-card:nth-child(4) i { /* Saúde Mental */
+    content: "\f0e0"; /* Ícone de coração */
+}
+
+/* Estilos para a seção de equipe */
+#equipe {
+    padding: 8rem 0;
+    background-color: #f7fafc;
+    text-align: center;
+}
+#equipe h2 {
+    font-size: 3rem;
+    color: #2d3748;
+    margin-bottom: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 1s ease;
+}
+#equipe .equipe-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 2rem;
+    margin-top: 2rem;
+}
+@media (min-width: 768px) {
+    #equipe .equipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    #equipe .equipe-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+#equipe .equipe-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 2.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+#equipe .equipe-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+#equipe .equipe-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+#equipe .equipe-card img:hover {
+    transform: scale(1.1);
+}
+#equipe .equipe-card h3 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    transition: color 0.3s ease;
+}
+#equipe .equipe-card h3:hover {
+    color: #48bb78;
+}
+#equipe .equipe-card p {
+    font-size: 1.1rem;
+    color: #4a5568;
+    line-height: 1.7;
+}
+</style>
+</head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.O.S.M.O.S. - Seus Cursos Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .equipe-card {
+            background-color: #E6E6FA;
+            padding: 20px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+            margin: 10px;
+        }
+        .harumi-name {
+            background: linear-gradient(to right, #DC143C, #FFF0F5, #BA55D3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline;
+        }
+        .joao-name {
+            background: linear-gradient(to right, #1C1C1C, #800000, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline;
+        }
+        .harumi-photo-container, .equipe-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .equipe-function {
+            padding: 0 10px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <section id="modules" class="container">
+        <h2>Nossos Cursos</h2>
+        <div class="module-grid">
+            <div class="module-card">
+                <div class="icon-wrapper"><i class="fas fa-utensils"></i></div>
+                <h3>Nutrição</h3>
+                <p>Aprenda a importância de uma alimentação saudável e equilibrada para o bem-estar físico e mental.</p>
+                <a href="#" class="button">Acessar Curso</a>
+            </div>
+            <div class="module-card">
+                <div class="icon-wrapper"><i class="fas fa-dumbbell"></i></div>
+                <h3>Musculação/Fitness</h3>
+                <p>Construa músculos e melhore sua forma física com treinos de musculação personalizados.</p>
+                <a href="#" class="button">Acessar Curso</a>
+            </div>
+            <div class="module-card">
+                <div class="icon-wrapper"><i class="fas fa-money-bill-wave"></i></div>
+                <h3>Economia/dinheiro</h3>
+                <p>Aprenda a gerenciar suas finanças e a tomar decisões financeiras inteligentes.</p>
+                <a href="#" class="button">Acessar Curso</a>
+            </div>
+            <div class="module-card">
+                <div class="icon-wrapper"><i class="fas fa-heart"></i></div>
+                <h3>Saúde Mental</h3>
+                <p>Cuide da sua saúde mental com técnicas e práticas para reduzir o estresse e aumentar o bem-estar.</p>
+                <a href="#" class="button">Acessar Curso</a>
+            </div>
+            <div class="module-card">
+                <div class="icon-wrapper"><i class="fas fa-clock"></i></div>
+                <h3>Em Breve</h3>
+                <p>Novos cursos em breve!</p>
+                <a href="#" class="button disabled">Em Breve</a>
+            </div>
+            <div class="module-card">
+                <div class="icon-wrapper"><i class="fas fa-clock"></i></div>
+                <h3>Em Breve</h3>
+                <p>Novos cursos em breve!</p>
+                <a href="#" class="button disabled">Em Breve</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="container spotlight">
+        <h2>Sobre Nós</h2>
+        <p>A C.O.S.M.O.S. é uma plataforma de aprendizado online dedicada a fornecer cursos de alta qualidade em diversas áreas. Nossa missão é capacitar pessoas a alcançarem seus objetivos e transformarem suas vidas através do conhecimento.</p>
+        <p>Nossos cursos são desenvolvidos por especialistas e oferecem uma experiência de aprendizado interativa e envolvente. Acreditamos que a educação é a chave para um futuro melhor e estamos comprometidos em tornar o aprendizado acessível a todos.</p>
+    </section>
+
+    <section id="videoaulas" class="container">
+        <h2>Tutoriais e Videoaulas</h2>
+        <div class="videoaulas-content">
+            <p>Assista aos nossos tutoriais e videoaulas para aprender novas habilidades e aprimorar seus conhecimentos.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Tutorial 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Tutorial 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <html lang="pt-br">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>C.O.S.M.O.S. - Seus Cursos Online</title>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <link rel="stylesheet" href="style.css">
+            <style>
+                .equipe-card {
+                    background-color: #E6E6FA;
+                    padding: 20px;
+                    border-radius: 8px;
+                    text-align: center;
+                }
+                .harumi-name {
+                    background: linear-gradient(to right, #DC143C, #FFF0F5, #BA55D3);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    display: inline;
+                }
+                .joao-name {
+                    background: linear-gradient(to right, #1C1C1C, #800000, #FFFFE0);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    display: inline;
+                }
+                .thiago-name {
+                    background: linear-gradient(to right, #800080, #008000, #000000); /* Roxo, verde, preto */
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    display: inline;
+                }
+                .harumi-photo-container, .equipe-card img {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    display: block;
+                    margin: 0 auto;
+                }
+            </style>
+        </head>
+        <body>
+            <section id="equipe" class="container">
+                <h2>Nossa Equipe C.O.S.M.O.S</h2>
+                <div class="equipe-grid">
+                    <div class="equipe-card harumi-card">
+                        <div class="harumi-photo-container">
+                            <img class="harumi-photo" src="images/harumi.jpeg" alt="Foto da Harumi">
+                        </div>
+                        <h3><span class="harumi-name">Harumi_</span></h3>
+                        <p class="harumi-title">Programador Sênior</p>
+                        <p class="harumi-description">Responsável por toda a programação e desenvolvimento deste projeto.</p>
+                        <div class="equipe-function">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="equipe-card">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Desenvolvedor 2">
+                        <h3><span class="thiago-name">Thiago</span></h3>
+                        <p>Criador </p>
+                        <div class="equipe-function">
+                            <p>Idealizador deste projeto, responsável por sua visão, conceito e desenvolvimento, </p>
+                        </div>
+                    </div>
+                    <div class="equipe-card">
+                        <img src="images/joao.jpg" alt="Foto do Desenvolvedor 3">
+                        <h3><span class="joao-name">João</span></h3>
+                        <p>Desenvolvedor</p>
+                        <div class="equipe-function">
+                            <p>Responsável pela criação e desenvolvimento do site, focando na estrutura, design</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </body>
+        </html>
+
+    <section id="contato" class="container">
+        <h2>Contate-nos</h2>
+        <p>Preencha o formulário abaixo para enviar sua mensagem.</p>
+        <form>
+            <div class="mb-4">
+                <label for="nome" class="sr-only">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu Nome" required>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="sr-only">Email</label>
+                <input type="email" id="email" name="email" placeholder="Seu Email" required>
+            </div>
+            <div class="mb-4">
+                <label for="mensagem" class="sr-only">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Sua Mensagem" required></textarea>
+            </div>
+            <button type="submit" class="button">Enviar Mensagem</button>
+        </form>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="copyright">
+                © 2024 C.O.S.M.O.S. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('nav-toggle');
+        const nav = document.getElementById('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        const navLinks = document.querySelectorAll('#nav ul li a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                nav.style.display = 'none';
+                navLinks.forEach(l => l.classList.remove('active'));
+                e.target.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
