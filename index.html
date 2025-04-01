@@ -1,0 +1,1187 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+    <title>Site Cosmos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            color: #1a202c;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .image.fit {
+            object-fit: cover;
+            object-position: center;
+            height: 400px;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px #db2b2b1a, 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .image.fit:hover {
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.15), 0 9px 12px -6px rgba(0, 0, 0, 0.1);
+        }
+        .spotlight {
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .spotlight h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            animation: fadeIn 2s ease, pulse 3s ease-in-out infinite;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+        .spotlight p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: slideIn 2s ease-out;
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 0.75rem;
+            color: white;
+            background-color: #48bb78;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            animation: zoomIn 1s ease-in, pulseButton 2s infinite alternate;
+        }
+        @keyframes zoomIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes pulseButton {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .button:hover {
+            background-color: #38a169;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 8px -4px rgba(0, 0, 0, 0.12);
+        }
+        .button:active {
+            background-color: #2f855a;
+            transform: translateY(0) scale(1);
+            box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.1), 0 1px 3px -1px rgba(0, 0, 0, 0.08);
+        }
+        #header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow 0.3s ease;
+        }
+        #header.scrolled {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        #logo a {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2b6cb0;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            letter-spacing: -0.02em;
+        }
+        #logo a:hover {
+            color: #3182ce;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        #nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        #nav ul li {
+            margin-left: 2rem;
+        }
+        #nav ul li a {
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.2s ease;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+        #nav ul li a:hover {
+            color: #2d3748;
+            transform: translateY(-2px);
+        }
+        #nav ul li a.active {
+            color: #2b6cb0;
+            font-weight: 700;
+        }
+        #nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #4a5568;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        #nav-toggle:hover {
+            color: #2d3748;
+            background-color: #edf2f7;
+        }
+        #nav-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        #banner {
+            background-image: linear-gradient(to bottom, #e0f2fe, #f0f4c3);
+            padding: 8rem 0;
+            text-align: center;
+            border-radius: 0.75rem;
+            margin-bottom: 6rem;
+            box-shadow: 0 6px 15px -2px rgba(0, 0, 0, 0.1), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+            position: relative;
+        }
+        #banner h2 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 2s ease, pulse 3s ease-in-out infinite;
+        }
+        #banner p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideIn 2s ease-out;
+        }
+        #banner .button {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            animation: zoomIn 1s ease-in, pulseButton 2s infinite alternate;
+        }
+        .goto-next {
+            margin-top: 3rem;
+        }
+        .goto-next a {
+            color: #4a5568;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.2rem;
+            animation: bounceArrow 1.5s ease-in-out infinite;
+        }
+        @keyframes bounceArrow {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+        .goto-next a:hover {
+            color: #2d3748;
+            transform: translateY(5px);
+        }
+        .goto-next i {
+            font-size: 2rem;
+        }
+        #footer {
+            background-color: #f7fafc;
+            padding: 4rem 0;
+            border-top: 1px solid #e2e8f0;
+        }
+        #footer .icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        #footer .icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            color: #4a5568;
+            transition: color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            animation: pulseIcon 2s infinite alternate;
+        }
+        @keyframes pulseIcon {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+        #footer .icons a:hover {
+            color: #2d3748;
+            background-color: #edf2f7;
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            filter: hue-rotate(-20deg) saturate(1.2);
+        }
+        #footer .copyright {
+            font-size: 0.9rem;
+            color: #718096;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #footer .copyright a {
+            color: #2b6cb0;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        #footer .copyright a:hover {
+            color: #3182ce;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            #nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                z-index: 1000;
+                overflow-y: auto;
+                padding-top: 4rem;
+                text-align: center;
+                animation: slideInMobile 0.5s ease-in-out;
+            }
+            @keyframes slideInMobile {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(0); }
+            }
+            #nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            #nav ul li {
+                margin: 2rem 0;
+            }
+            #nav ul li a {
+                color: white;
+                font-size: 1.5rem;
+            }
+            #nav ul li a:hover {
+                color: #f7fafc;
+                transform: scale(1.2);
+            }
+            #nav-toggle {
+                display: block;
+            }
+            .container {
+                padding: 0 2rem;
+            }
+            #banner h2 {
+                font-size: 3rem;
+            }
+            #banner p {
+                font-size: 1.2rem;
+            }
+            .spotlight h2 {
+                font-size: 2.5rem;
+            }
+            .spotlight p {
+                font-size: 1.1rem;
+            }
+            .image.fit {
+                height: 400px;
+            }
+        }
+        #modules {
+            padding: 8rem 0;
+            background-color: #edf2f7;
+            text-align: center;
+        }
+        #modules h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+        @keyframes fadeInUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        #modules .module-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        #modules .module-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #modules .module-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        #modules .module-card h3 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+        #modules .module-card h3:hover {
+            color: #48bb78;
+        }
+        #modules .module-card p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        #modules .module-card .button {
+            align-self: flex-start;
+        }
+
+        /* Estilos para a seção de módulos */
+        #modules {
+            padding: 8rem 0;
+            background-color: #edf2f7;
+            text-align: center;
+        }
+        #modules h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+        @keyframes fadeInUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        #modules .module-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            #modules .module-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        #modules .module-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #modules .module-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        #modules .module-card h3 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+        #modules .module-card h3:hover {
+            color: #48bb78;
+        }
+        #modules .module-card p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        #modules .module-card .button {
+            align-self: flex-start;
+        }
+
+        /* Adicionando estilos para as seções de alimentação e vídeo aulas */
+        #alimentacao, #videoaulas {
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        #alimentacao h2,
+        #videoaulas h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+
+        #alimentacao .alimentacao-content,
+        #videoaulas .videoaulas-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        #alimentacao p,
+        #videoaulas p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 80%;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        #alimentacao .image-wrapper,
+        #videoaulas .video-wrapper {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 6px 15px -2px rgba(0, 0, 0, 0.1), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+            margin-bottom: 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+        }
+
+        #alimentacao .image-wrapper:hover,
+        #videoaulas .video-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        #alimentacao img,
+        #videoaulas iframe {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #videoaulas iframe {
+            aspect-ratio: 16 / 9;
+        }
+
+        /* Estilos para a seção de planos */
+        #planos {
+            padding: 8rem 0;
+            text-align: center;
+            background-color: #f7fafc;
+        }
+
+        #planos h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+
+        #planos .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            #planos .planos-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {#planos .planos-grid {
+grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        #planos .plano-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: fadeIn 1s ease, slideIn 0.5s ease-out;
+        }
+        #planos .plano-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #planos .plano-card h3 {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+
+        #planos .plano-card h3:hover{
+             color: #48bb78;
+        }
+
+        #planos .plano-card p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        #planos .plano-card ul {
+            list-style: none;
+            margin: 0 0 2rem 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        #planos .plano-card ul li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #planos .plano-card ul li i {
+            color: #48bb78;
+            font-size: 1.2rem;
+            animation: checkIcon 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes checkIcon {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.3); }
+        }
+
+        #planos .plano-card .preco {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        #planos .plano-card .button {
+            align-self: center;
+            width: 100%;
+        }
+        #contato {
+            padding: 8rem 0;
+            text-align: center;
+            background-color: #e2e8f0;
+        }
+        #contato h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+        #contato p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease;
+        }
+        #contato form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        #contato form .mb-4 {
+            width: 100%;
+            max-width: 400px;
+        }
+        #contato form label {
+            display: block;
+            text-align: left;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        #contato form input,
+        #contato form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            font-size: 1rem;
+            color: #4a5568;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        #contato form input:focus,
+        #contato form textarea:focus {
+            border-color: #48bb78;
+            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+        }
+        #contato form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        #contato form button {
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Estilos para os ícones dos módulos */
+        #modules .module-card .icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem auto;
+            transition: transform 0.3s ease;
+        }
+
+        #modules .module-card .icon-wrapper:hover {
+            transform: scale(1.1);
+        }
+
+        #modules .module-card i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        #modules .module-card:nth-child(1) .icon-wrapper {
+            background-image: linear-gradient(to bottom right, #f44336, #d32f2f);
+        }
+        #modules .module-card:nth-child(1) i { /* Nutrição */
+            content: "\f0f4"; /* Exemplo: Ícone de alimentação */
+        }
+
+        #modules .module-card:nth-child(2) .icon-wrapper {
+            background-image: linear-gradient(to bottom right, #4caf50, #388e3c);
+        }
+         #modules .module-card:nth-child(2) i { /* Treino Funcional */
+            content: "\f1e0"; /* Exemplo: Ícone de corrida */
+        }
+
+        #modules .module-card:nth-child(3) .icon-wrapper {
+            background-image: linear-gradient(to bottom right, #2196f3, #1976d2);
+        }
+        #modules .module-card:nth-child(3) i { /* Musculação */
+            content: "\f46b"; /* Exemplo: Ícone de haltere */
+        }
+        #modules .module-card:nth-child(4) .icon-wrapper {
+            background-image: linear-gradient(to bottom right, #ffc107, #ff8f00);
+        }
+        #modules .module-card:nth-child(4) i {
+            content: "\f001";
+        }
+
+        #modules .module-card:nth-child(5) .icon-wrapper {
+            background-image: linear-gradient(to bottom right, #9c27b0, #7b1fa2);
+        }
+
+        #modules .module-card:nth-child(5) i {
+            content: "\f217";
+        }
+
+        #modules .module-card:nth-child(6) .icon-wrapper {
+            background-image: linear-gradient(to bottom right, #00bcd4, #00838f);
+        }
+        #modules .module-card:nth-child(6) i {
+            content: "\f06e";
+        }
+
+        #footer .contato-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        #footer .contato-info h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        #footer .contato-info ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #footer .contato-info ul li {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+
+        #footer .contato-info ul li strong {
+            color: #2d3748;
+        }
+
+        /* Estilos para a seção de desenvolvedores */
+        #devs {
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        #devs h2 {
+            font-size: 3rem;
+            color: #2d3748;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+        }
+
+        #devs .dev-piramide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        #devs .dev-level {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideIn 1s ease forwards;
+        }
+
+        #devs .dev-level:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        #devs .dev-level:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        #devs .dev-level:nth-child(3) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #devs .dev-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin: 0 1rem;
+            min-width: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* Adicionado para posicionar o tooltip */
+            cursor: pointer; /* Opcional: indica que o card é interativo */
+        }
+
+        #devs .dev-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #devs .dev-card h3 {
+            font-size: 1.2rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        #devs .dev-card p {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        #devs .senior {
+            background-color: #f56565;
+            color: white;
+        }
+
+        #devs .creator {
+            background-color: #48bb78;
+            color: white;
+        }
+
+        #devs .developer {
+            background-color: #3182ce;
+            color: white;
+        }
+
+        #devs .empresa {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+
+        /* Estilos para o tooltip */
+        .tooltip {
+            position: absolute;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            bottom: 120%; /* Posição acima do elemento */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            pointer-events: none; /* Importante: permite que o mouse interaja com o elemento abaixo */
+        }
+
+        .dev-card:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-10px); /* Adiciona um pequeno deslocamento para cima */
+        }
+
+        /* Estilos para os personagens */
+        #devs .dev-card .character {
+            font-size: 2rem; /* Tamanho do personagem */
+            margin-bottom: 0.5rem; /* Espaçamento entre o personagem e o nome */
+            display: block; /* Garante que o personagem se comporte como um elemento de bloco */
+        }
+
+        .senior .character {
+            content: "🔥"; /* Exemplo: Fogo para Senior */
+        }
+
+        .creator .character {
+             content: "💡"; /* Exemplo: Lâmpada para Criador */
+        }
+
+        .developer .character {
+            content: "💻"; /* Exemplo: Computador para Desenvolvedor */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="page-wrapper">
+        <header id="header" class="bg-white shadow-md">
+            <div class="container flex justify-between items-center py-4">
+                <div id="logo">
+                    <a href="#">C.O.S.M.O.S</a>
+                </div>
+                <nav id="nav">
+                    <ul class="flex">
+                        <li><a href="#" class="active">Início</a></li>
+                        <li><a href="#sobre">Sobre o Curso</a></li>
+                        <li><a href="#alimentacao">Alimentação</a></li>
+                        <li><a href="#videoaulas">Videoaulas</a></li>
+                        <li><a href="#planos">Planos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#" class="button primary">Inscrever-se</a></li>
+                    </ul>
+                </nav>
+                <button id="nav-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <section id="banner" class="bg-gradient-to-b from-blue-100 to-yellow-100">
+            <div class="container">
+                <div class="content">
+                    <header>
+                        <h2>Transforme seu Corpo e sua Saúde</h2>
+                        <p>Com nosso curso de Educação Fitness, você alcançará seus objetivos de forma eficaz e duradoura.</p>
+                    </header>
+                    <a href="#modules" class="button">Comece Agora</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules" class="bg-gray-50">
+            <div class="container">
+                <h2>Módulos do Curso</h2>
+                <div class="module-grid">
+                    <div class="module-card">
+                        <div class="icon-wrapper">
+                           <i class="fas"></i>
+                        </div>
+                        <h3>Nutrição e Dietas</h3>
+                        <p>Aprenda a fazer escolhas alimentares inteligentes para otimizar seus resultados e alcançar seus objetivos de forma saudável.</p>
+                    </div>
+                    <div class="module-card">
+                         <div class="icon-wrapper">
+                            <i class="fas"></i>
+                        </div>
+                        <h3>Treino Funcional</h3>
+                        <p>Descubra os benefícios do treino funcional, com exercícios dinâmicos que trabalham o corpo todo e melhoram sua performance.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="icon-wrapper">
+                            <i class="fas"></i>
+                        </div>
+                        <h3>Musculação</h3>
+                        <p>Desenvolva força, massa muscular e defina seu corpo com nosso módulo completo de musculação, com técnicas e dicas de especialistas.</p>
+                    </div>
+                     <div class="module-card">
+                        <div class="icon-wrapper">
+                            <i class="fas"></i>
+                        </div>
+                        <h3>Yoga</h3>
+                        <p>Acalme sua mente e fortaleça seu corpo com a prática milenar do Yoga. Melhore sua flexibilidade, equilíbrio e bem-estar geral.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="icon-wrapper">
+                            <i class="fas"></i>
+                        </div>
+                        <h3>Pilates</h3>
+                        <p>Alcance um corpo mais forte, alongado e elegante com o método Pilates. Desenvolva seu core, melhore sua postura e alivie tensões.</p>
+                    </div>
+                    <div class="module-card">
+                         <div class="icon-wrapper">
+                            <i class="fas"></i>
+                        </div>
+                        <h3>Meditação</h3>
+                        <p>Encontre paz interior, reduza o estresse e aumente seu foco com técnicas de meditação guiada. Cuide da sua saúde mental e emocional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="alimentacao" class="bg-white">
+            <div class="container">
+                <h2>Alimentação Saudável e Equilibrada</h2>
+                <div class="alimentacao-content">
+                    <p>Aprenda a fazer escolhas alimentares que potencializam seus resultados e melhoram sua qualidade de vida.  Descubra os segredos de uma nutrição balanceada.</p>
+                    <div class="image-wrapper">
+                        <img src="images/alimentacao-saudavel.jpg" alt="Alimentação Saudável" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="videoaulas" class="bg-gray-50">
+            <div class="container">
+                <h2>Videoaulas com Especialistas</h2>
+                <div class="videoaulas-content">
+                    <p>Tenha acesso a videoaulas exclusivas com os melhores profissionais do mercado fitness. Aprenda técnicas corretas, tire suas dúvidas e motive-se!</p>
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Videoaula sobre Educação Fitness" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="bg-gray-100">
+            <div class="container">
+                <h2>Invista na sua Saúde</h2>
+                <div class="planos-grid">
+                    <div class="plano-card">
+                        <h3>Plano Único</h3>
+                        <p>Acesso completo a todo o conteúdo do curso, suporte dedicado e materiais exclusivos. Invista no seu bem-estar!</p>
+                        <div class="preco">R$ 50,00</div>
+                        <a href="pagamento.html" class="button">Matricule-se Já</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="bg-gray-50">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <p>Estamos prontos para responder suas perguntas e ajudar você a iniciar sua jornada fitness. Preencha o formulário e fale conosco!</p>
+                <form id="contact-form">
+                    <div class="mb-4">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu Nome" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Seu Email" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Sua Mensagem"></textarea>
+                    </div>
+                    <button type="submit" class="button primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="devs" class="bg-gray-100">
+            <div class="container">
+                <h2>Nossa Equipe de Desenvolvimento</h2>
+                <div class="dev-piramide">
+                    <div class="dev-level">
+                        <div class="dev-card senior">
+                            <a href="https://www.instagram.com/okaid0_/" target="_blank" rel="noopener noreferrer">
+                                <span class="character">🔥</span>
+                                <h3>Okaido</h3>
+                                <p>Programador Sênior</p>
+                            </a>
+                            <div class="tooltip">
+                                <p><strong>Okaido</strong>: Programador Sênior, responsável pela arquitetura e liderança técnica do projeto.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dev-level">
+                        <div class="dev-card creator">
+                            <a href="https://www.instagram.com/joaopedro.jps?igsh=MTNwcTEzY3k3eDR6aw==" target="_blank" rel="noopener noreferrer">
+                                <span class="character">💡</span>
+                                <h3>João</h3>
+                                 <p>Criador</p>
+                            </a>
+                            <div class="tooltip">
+                                 <p><strong>João</strong>: Criador do projeto, colaborou na concepção e no planejamento.</p>
+                            </div>
+                         </div>
+                        <div class="dev-card creator">
+                            <a href="https://www.instagram.com/thiago_saturnino_13?igsh=MTR1Z2tubDZ3YXRjag==" target="_blank" rel="noopener noreferrer">
+                                 <span class="character">💡</span>
+                                <h3>Thiago</h3>
+                                <p>Criador</p>
+                            </a>
+                            <div class="tooltip">
+                                <p><strong>Thiago</strong>: Criador do projeto, colaborou na concepção e no planejamento.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dev-level">
+                        <div class="dev-card developer">
+                             <a href="https://www.instagram.com/henri_0dz9__?igsh=MTl0ZW9vYTM5N20zYQ==" target="_blank" rel="noopener noreferrer">
+                                <span class="character">💻</span>
+                                <h3>Henri</h3>
+                                <p>Desenvolvedor</p>
+                            </a>
+                            <div class="tooltip">
+                                <p><strong>Henri</strong>: Desenvolvedor, responsável pela implementação e desenvolvimento do site.</p>
+                            </div>
+                        </div>
+                        <div class="dev-card developer">
+                            <a href="https://www.instagram.com/pedrinho_2024k?igsh=MXdtNXB2MXlrbG82YQ==" target="_blank" rel="noopener noreferrer">
+                                <span class="character">💻</span>
+                                <h3>Pedro</h3>
+                                <p>Desenvolvedor</p>
+                            </a>
+                            <div class="tooltip">
+                                <p><strong>Pedro</strong>: Desenvolvedor, contribuiu no desenvolvimento e na manutenção do site.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="empresa">
+                    Desenvolvido por: <a href="https://www.instagram.com/empresa_cosmos/" target="_blank" rel="noopener noreferrer">C.O.S.M.O</a>
+                </div>
+            </div>
+        </secti

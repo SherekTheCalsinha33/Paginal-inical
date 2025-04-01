@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Pagamento PIX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 3rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 45rem;
+            animation: fadeIn 1s ease-in-out, slideIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); }
+            to { transform: translateY(0); }
+        }
+
+        .title-wrapper {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .title {
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.025em;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.06); }
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: #4b5563;
+            line-height: 1.75rem;
+        }
+
+        .payment-method-wrapper {
+            margin-bottom: 2rem;
+        }
+
+        .payment-method-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-method-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .payment-method-option {
+            background-color: #f9fafb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            width: 100%;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .payment-method-option:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-5px) scale(1.04);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 5px -1px rgba(0, 0, 0, 0.08);
+        }
+
+        .payment-method-option.selected {
+            background-color: #e0f2fe;
+            border: 2px solid #3b82f6;
+            animation: pulseSelect 0.8s infinite alternate;
+        }
+
+        @keyframes pulseSelect {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        .payment-method-option i {
+            font-size: 2rem;
+            color: #4b5563;
+        }
+
+        .payment-method-option.selected i {
+            color: #3b82f6;
+        }
+
+        .payment-method-option span {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .qr-code-wrapper {
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .qr-code-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1rem;
+        }
+
+        .qr-code-description {
+            font-size: 0.875rem;
+            color: #6b7280;
+            line-height: 1.5rem;
+            text-align: center;
+        }
+
+        .coupon-wrapper {
+            margin-bottom: 2rem;
+        }
+
+        .coupon-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+        }
+
+        .coupon-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .coupon-input-wrapper input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+            color: #1e293b;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .coupon-input-wrapper input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .coupon-input-wrapper input::placeholder {
+            color: #9ca3af;
+        }
+
+        .coupon-input-wrapper button {
+            padding: 0.75rem 1rem;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .coupon-input-wrapper button:hover {
+            background-color: #45a049;
+        }
+
+        .discount-message {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #15803d;
+            background-color: #f0fdf4;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #16a34a;
+            text-align: center;
+        }
+
+        .purchase-summary {
+            margin-top: 2rem;
+            background-color: #f9fafb;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .purchase-summary-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .purchase-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .purchase-item span {
+            font-size: 1rem;
+            color: #4b5563;
+        }
+
+        .purchase-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .purchase-total span:first-child {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .purchase-total span:last-child {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #8b5cf6;
+            border-radius: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 2rem;
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
+            animation: pulseButton 2s infinite alternate;
+        }
+
+        @keyframes pulseButton {
+            from { transform: scale(1); }
+            to { transform: scale(1.04); }
+        }
+
+        .checkout-button:hover {
+            background-color: #7c3aed;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.2), 0 4px 9px -4px rgba(0, 0, 0, 0.12);
+        }
+
+        .checkout-button:active {
+            background-color: #6d28d9;
+            transform: translateY(0);
+            box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.1), 0 1px 3px -1px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+            .payment-method-options {
+                flex-direction: column;
+            }
+            .payment-method-option {
+                width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            .coupon-input-wrapper {
+                flex-direction: column;
+            }
+            .coupon-input-wrapper input,
+            .coupon-input-wrapper button {
+                border-radius: 0.5rem;
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container">
+        <div class="title-wrapper">
+            <h1 class="title">Finalize seu Pagamento</h1>
+            <p class="subtitle">Escaneie o QR Code para pagar com Pix e aproveite seu desconto!</p>
+        </div>
+
+        <div class="payment-method-wrapper">
+            <h2 class="payment-method-title">Forma de Pagamento</h2>
+            <div class="payment-method-options">
+                <div class="payment-method-option selected" data-method="pix">
+                    <i class="fas fa-qrcode"></i>
+                    <span>Pix</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="qr-code-wrapper">
+            <img src="images/qr-code.png" alt="QR Code Pix">
+            <p class="qr-code-description">
+                Escaneie o código QR com o aplicativo do seu banco para efetuar o pagamento.
+            </p>
+        </div>
+
+        <div class="coupon-wrapper">
+            <h2 class="coupon-title">Cupom de Desconto</h2>
+            <div class="coupon-input-wrapper">
+                <input type="text" id="coupon-code" placeholder="Insira seu cupom de desconto" />
+                <button id="apply-coupon">Aplicar</button>
+            </div>
+            <div id="discount-message" style="display: none;">
+                Desconto de 12,5% aplicado!
+            </div>
+        </div>
+
+        <div class="purchase-summary">
+            <h2 class="purchase-summary-title">Resumo da Compra</h2>
+            <div class="purchase-item">
+                <span>Produto:</span>
+                <span>Curso de Educação Fitness</span>
+            </div>
+            <div class="purchase-item">
+                <span>Valor:</span>
+                <span id="original-price">R$ 58,00</span>
+            </div>
+            <div class="purchase-total">
+                <span>Total:</span>
+                <span id="total-price">R$ 58,00</span>
+            </div>
+        </div>
+
+        <button class="checkout-button">Finalizar Compra</button>
+    </div>
+
+    <script>
+        const paymentOptions = document.querySelectorAll('.payment-method-option');
+        const couponInput = document.getElementById('coupon-code');
+        const applyCouponButton = document.getElementById('apply-coupon');
+        const discountMessage = document.getElementById('discount-message');
+        const originalPrice = document.getElementById('original-price');
+        const totalPriceElement = document.getElementById('total-price');
+        const checkoutButton = document.querySelector('.checkout-button');
+
+        let total = 58.00;
+        let discountApplied = false;
+
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+
+        applyCouponButton.addEventListener('click', () => {
+            const couponCode = couponInput.value.trim().toLowerCase();
+
+            if (couponCode === 'thiagojesus10' && !discountApplied) {
+                const discount = total * 0.125;
+                total -= discount;
+                totalPriceElement.textContent = `R$ ${total.toFixed(2)}`;
+                discountMessage.style.display = 'block';
+                discountApplied = true;
+            } else if (discountApplied) {
+                alert('Cupom já aplicado!');
+            } else {
+                alert('Cupom inválido!');
+            }
+            couponInput.value = '';
+        });
+
+        checkoutButton.addEventListener('click', () => {
+            alert('Pagamento realizado com sucesso!');
+        });
+    </script>
+</body>
+</html>
