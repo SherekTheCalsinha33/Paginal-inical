@@ -968,7 +968,7 @@
                 <div class="icon-wrapper"><i class="fas fa-dumbbell"></i></div>
                 <h3>Musculação/Fitness</h3>
                 <p>Construa músculos e melhore sua forma física com treinos de musculação personalizados.</p>
-                <a href="home.html" class="button">Acessar Curso</a>
+                <a href="#" class="button">Acessar Curso</a>
             </div>
             <div class="module-card">
                 <div class="icon-wrapper"><i class="fas fa-money-bill-wave"></i></div>
