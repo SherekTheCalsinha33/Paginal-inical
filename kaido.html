@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.O.S.M.O.S - Status do Sistema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #001f3f, #000000);
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 191, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar h2 {
+            color: #00bfff;
+            text-shadow: 0 0 10px #00bfff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            border-bottom: 1px solid #00bfff;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .sidebar ul li:hover {
+            background: #00bfff;
+            color: black;
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 32px;
+            color: #00bfff;
+            text-shadow: 0 0 10px #00bfff;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00bfff; }
+            to { text-shadow: 0 0 20px #00bfff; }
+        }
+
+        .status-box {
+            width: 80%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #00bfff;
+            margin-top: 20px;
+            overflow-y: auto;
+            height: 500px;
+            display: none;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #00bfff;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-value {
+            font-size: 18px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .status-value.high {
+            color: red;
+        }
+
+        @keyframes pulse {
+            from { color: #00bfff; }
+            to { color: #00ffff; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li onclick="showSection('statusGeral')">Status Geral</li>
+            <li onclick="showSection('servidoresProxy')">Servidores Proxy</li>
+            <li onclick="showSection('bancoDados')">Banco de Dados</li>
+            <li onclick="showSection('conexoesAtivas')">Conexões Ativas</li>
+            <li onclick="showSection('firewall')">Firewall</li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1 class="title">C.O.S.M.O.S - Status do Sistema</h1>
+        <div class="status-box" id="statusGeral"></div>
+        <div class="status-box" id="servidoresProxy"></div>
+        <div class="status-box" id="bancoDados"></div>
+        <div class="status-box" id="conexoesAtivas"></div>
+        <div class="status-box" id="firewall"></div>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.status-box').forEach(box => box.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function generateStatus(sectionId, items) {
+            const container = document.getElementById(sectionId);
+            let content = "";
+            items.forEach(item => {
+                let value = Math.floor(Math.random() * 100);
+                let statusClass = value > 60 ? 'status-value high' : 'status-value';
+                content += `
+                    <div class='status-item'>
+                        <span><i class='fa ${item.icon} status-icon'></i> ${item.label}</span>
+                        <span class='${statusClass}' id='${item.id}'>${value}${item.unit || '%'}</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = content;
+        }
+
+        function updateNumbers() {
+            document.querySelectorAll('.status-value').forEach(item => {
+                let newValue = Math.floor(Math.random() * 100);
+                item.textContent = `${newValue}${item.textContent.includes('%') ? '%' : ''}`;
+                item.classList.toggle('high', newValue > 60);
+            });
+        }
+
+        setInterval(updateNumbers, 3000);
+
+        generateStatus('statusGeral', [
+            { label: 'CPU Uso', icon: 'fa-microchip', id: 'cpu' },
+            { label: 'Memória', icon: 'fa-memory', id: 'ram' },
+            { label: 'Disco', icon: 'fa-hdd', id: 'disk' },
+            { label: 'Rede ID ' + Math.floor(Math.random() * 999999999), icon: 'fa-network-wired', id: 'network', unit: '' },
+            { label: 'GPU', icon: 'fa-video', id: 'gpu'},
+            { label: 'Temperatura', icon: 'fa-thermometer-half', id: 'temp'}
+        ]);
+
+        generateStatus('servidoresProxy', [
+            { label: 'Proxy ID ' + Math.floor(Math.random() * 9999), icon: 'fa-network-wired', id: 'proxy1'},
+            { label: 'Proxy ID ' + Math.floor(Math.random() * 9999), icon: 'fa-network-wired', id: 'proxy2' },
+            { label: 'Proxy ID ' + Math.floor(Math.random() * 9999), icon: 'fa-network-wired', id: 'proxy3' },
+            { label: 'Proxy ID ' + Math.floor(Math.random() * 9999), icon: 'fa-network-wired', id: 'proxy4' },
+            { label: 'Proxy ID ' + Math.floor(Math.random() * 9999), icon: 'fa-network-wired', id: 'proxy5' },
+            { label: 'Proxy ID ' + Math.floor(Math.random() * 9999), icon: 'fa-network-wired', id: 'proxy6' }
+        ]);
+
+        generateStatus('bancoDados', [
+            { label: 'Banco ID ' + Math.floor(Math.random() * 9999), icon: 'fa-database', id: 'db1'},
+            { label: 'Banco ID ' + Math.floor(Math.random() * 9999), icon: 'fa-database', id: 'db2'},
+            { label: 'Banco ID ' + Math.floor(Math.random() * 9999), icon: 'fa-database', id: 'db3'},
+            { label: 'Banco ID ' + Math.floor(Math.random() * 9999), icon: 'fa-database', id: 'db4'},
+            { label: 'Banco ID ' + Math.floor(Math.random() * 9999), icon: 'fa-database', id: 'db5'},
+            { label: 'Banco ID ' + Math.floor(Math.random() * 9999), icon: 'fa-database', id: 'db6'}
+        ]);
+
+        generateStatus('conexoesAtivas', [
+            { label: 'São Paulo Brasil IDP ' + Math.floor(Math.random() * 999), icon: 'fa-link', id: 'conn1'},
+            { label: 'São Paulo Brasil IDP ' + Math.floor(Math.random() * 999), icon: 'fa-link', id: 'conn2' },
+            { label: 'São Paulo Brasil IDP ' + Math.floor(Math.random() * 999), icon: 'fa-link', id: 'conn3'},
+            { label: 'São Paulo Brasil IDP ' + Math.floor(Math.random() * 999), icon: 'fa-link', id: 'conn4'},
+            { label: 'São Paulo Brasil IDP ' + Math.floor(Math.random() * 999), icon: 'fa-link', id: 'conn5'},
+            { label: 'São Paulo Brasil IDP ' + Math.floor(Math.random() * 999), icon: 'fa-link', id: 'conn6'}
+        ]);
+
+        generateStatus('firewall', [
+            { label: 'Firewall ID ' + Math.floor(Math.random() * 99), icon: 'fa-shield-alt', id: 'fw1'},
+            { label: 'Firewall ID ' + Math.floor(Math.random() * 99), icon: 'fa-shield-alt', id: 'fw2'},
+            { label: 'Firewall ID ' + Math.floor(Math.random() * 99), icon: 'fa-shield-alt', id: 'fw3'},
+            { label: 'Firewall ID ' + Math.floor(Math.random() * 99), icon: 'fa-shield-alt', id: 'fw4'},
+            { label: 'Firewall ID ' + Math.floor(Math.random() * 99), icon: 'fa-shield-alt', id: 'fw5'},
+            { label: 'Firewall ID ' + Math.floor(Math.random() * 99), icon: 'fa-shield-alt', id: 'fw6'}
+        ]);
+    </script>
+</body>
+</html>
